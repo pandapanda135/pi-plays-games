@@ -3,14 +3,25 @@ from mpmath import mp
 import time
 from key_codes import *
 
-mp.dps = 3 # Set decimal places
+mp.dps = 5000 # Set decimal places
 
 up = 0
+start_time = 5 #change to modify how long until it start 
 #update variables function
 def update_up():
     global up
     up += 1
 
+#countdown to start
+while True:
+    if start_time == 0:
+        break
+    else:
+        pass
+    print("starting in:", start_time)
+    start_time -= 1
+    time.sleep(1)
+        
 while True:
     time.sleep(0.5) # change time between input
     pi = str(mp.pi)
@@ -18,19 +29,19 @@ while True:
     #switch to select key press
     match split_pi[up]:
         case '0':
-            HoldAndReleaseKey(W, 0.5)
+            HoldAndReleaseKey(W, 0.25)
             update_up()
             print("w")
         case '1':
-            HoldAndReleaseKey(A, 0.5)
+            HoldAndReleaseKey(A, 0.25)
             update_up()
             print("a")
         case '2':
-            HoldAndReleaseKey(D, 0.5)
+            HoldAndReleaseKey(D, 0.25)
             update_up()
             print("d")
         case '3':
-            HoldAndReleaseKey(S, 0.5)
+            HoldAndReleaseKey(S, 0.25)
             update_up()
             print("s")
         #not great for pokemon emerald can be enabled if playing other game

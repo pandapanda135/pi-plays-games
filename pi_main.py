@@ -6,6 +6,7 @@ from key_codes import *
 mp.dps = 5000 # Set decimal places
 
 up = 0
+button_hold_time = 0.25
 start_time = 5 #change to modify how long until it start 
 #update variables function
 def update_up():
@@ -21,58 +22,50 @@ while True:
     print("starting in:", start_time)
     start_time -= 1
     time.sleep(1)
-        
+
+pi = str(mp.pi)
+split_pi = list(pi)
+
 while True:
-    time.sleep(0.5) # change time between input
-    pi = str(mp.pi)
-    split_pi = list(pi)
+    time.sleep(0.25) # change time between input if this is set to 0.25 it will take approx 0.5 seconds assuming button_hold_time is set to 0.25
+    #use this if you want time between each input but cant increase key held time
     #switch to select key press
     match split_pi[up]:
         case '0':
-            HoldAndReleaseKey(W, 0.25)
-            update_up()
+            HoldAndReleaseKey(W, button_hold_time)
             print("w")
         case '1':
-            HoldAndReleaseKey(A, 0.25)
-            update_up()
+            HoldAndReleaseKey(A, button_hold_time)
             print("a")
         case '2':
-            HoldAndReleaseKey(D, 0.25)
-            update_up()
+            HoldAndReleaseKey(D, button_hold_time)
             print("d")
         case '3':
-            HoldAndReleaseKey(S, 0.25)
-            update_up()
+            HoldAndReleaseKey(S, button_hold_time)
             print("s")
         #not great for pokemon emerald can be enabled if playing other game
         # case '4':
-        #     HoldAndReleaseKey(Z,0.1)
-        #     update_up()
+        #     HoldAndReleaseKey(Z, button_hold_time)
         #     print("z")
         case '5'|'4':
-            HoldAndReleaseKey(X,0.1)
-            update_up()
+            HoldAndReleaseKey(X, button_hold_time)
             print("x")
         case '6':
-            HoldAndReleaseKey(E,0.1)
-            update_up()
+            HoldAndReleaseKey(E, button_hold_time)
             print("e")
         case '7':
-            HoldAndReleaseKey(Q,0.1)
-            update_up()
+            HoldAndReleaseKey(Q, button_hold_time)
             print("q")
         case '8':
-            HoldAndReleaseKey(F,0.1)
-            update_up()
+            HoldAndReleaseKey(F, button_hold_time)
             print("f")
         case '9':
-            HoldAndReleaseKey(R,0.1)
-            update_up()
+            HoldAndReleaseKey(R, button_hold_time)
             print("r")
         #deals with characters not defined
         case _:
-            update_up()
             print("non")
+    update_up()
     #resets up if it is larger then decimal places to prevent crash
     if up >= mp.dps:
         up = 0

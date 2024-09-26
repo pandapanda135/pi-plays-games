@@ -1,13 +1,25 @@
+import os
 import keyboard
 from mpmath import mp
 import time
 from key_codes import *
-
+from dotenv import load_dotenv
+from dotenv import set_key
+from pathlib import Path
+load_dotenv("up.env")
 mp.dps = 5000 # Set decimal places
 
 up = 0
 button_hold_time = 0.25
 start_time = 5 #change to modify how long until it start 
+#handles loading 
+env_file_path = Path("up.env")
+new_up = os.getenv("UP")
+if new_up != None:
+    up = int(new_up)
+else:
+    set_key(dotenv_path=env_file_path, key_to_set="UP", value_to_set='0')
+
 #update variables function
 def update_up():
     global up
@@ -66,6 +78,9 @@ while True:
         case _:
             print("non")
     update_up()
+    #handles saving
+    env_up = str(up)
+    set_key(dotenv_path=env_file_path, key_to_set="UP", value_to_set=env_up)
     #resets up if it is larger then decimal places to prevent crash
     if up >= mp.dps:
         up = 0

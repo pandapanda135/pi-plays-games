@@ -1,3 +1,4 @@
+# this is used as a script in obs to get the sceneitemid of each source in your scene 
 obs = obslua
 
 function get_scene_item_ids(scene_name)

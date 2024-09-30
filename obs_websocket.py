@@ -8,6 +8,7 @@ scene_item_id = 0
 #cl = toml.load("config.toml")
 
 # pass conn info if not in config.toml
+#add websocket settings in the function
 cl = obs.ReqClient()
 
 resp = cl.get_scene_item_list("Scene 6")

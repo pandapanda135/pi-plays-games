@@ -32,6 +32,7 @@ def countdown():
     global start_time
     while True:
         if start_time == 0:
+            start_time = 5
             break
         else:
             pass
@@ -40,9 +41,9 @@ def countdown():
         time.sleep(1)
 
 def pause():
-    print("script is now paused press X to close or press R to continue")
+    print("script is now paused press X to close or press H to continue")
     while True:
-        if keyboard.is_pressed("r"):
+        if keyboard.is_pressed("h"):
             main()
         if keyboard.is_pressed('x'):
             break
@@ -79,8 +80,6 @@ def main():
     global split_pi
     global up
     global dps
-    global start_time
-    start_time = 5
     countdown()
     while True:
         time.sleep(0.5) # change time between input if this is set to 0.25 it will take approx 0.5 seconds assuming button_hold_time is set to 0.25
@@ -88,49 +87,62 @@ def main():
         #switch to select key press
         match split_pi[up]:
             case '0':
-                HoldAndReleaseKey(W, button_hold_time)
-                obs.Toggle_obs(15,20,button_hold_time)
+                key_select = W
+                obs_not_select = 15
+                obs_select = 20
                 print("w",split_pi[up])
             case '1':
-                HoldAndReleaseKey(A, button_hold_time)
-                obs.Toggle_obs(17,22,button_hold_time)
+                key_select = A
+                obs_not_select = 17
+                obs_select = 22
                 print("a",split_pi[up])
             case '2':
-                HoldAndReleaseKey(D, button_hold_time)
-                obs.Toggle_obs(16,21,button_hold_time)
+                key_select = D
+                obs_not_select = 16
+                obs_select = 21
                 print("d",split_pi[up])
             case '3':
-                HoldAndReleaseKey(S, button_hold_time)
-                obs.Toggle_obs(18,23,button_hold_time)
+                key_select = S
+                obs_not_select = 18
+                obs_select = 23
                 print("s",split_pi[up])
             #not great for pokemon emerald can be enabled if playing other game
             # case '4':
             #     HoldAndReleaseKey(Z, button_hold_time)
             #     print("z")
             case '5'|'4':
-                HoldAndReleaseKey(X, button_hold_time)
-                obs.Toggle_obs(25,30,button_hold_time)
+                key_select = X
+                obs_not_select = 25
+                obs_select = 30
                 print("x",split_pi[up])
             case '6':
-                HoldAndReleaseKey(A, button_hold_time)
-                obs.Toggle_obs(11,19,button_hold_time)
+                key_select = A
+                obs_not_select = 11
+                obs_select = 19
                 print("a",split_pi[up])
             case '7':
-                HoldAndReleaseKey(B, button_hold_time)
-                obs.Toggle_obs(9,10,button_hold_time)
+                key_select = B
+                obs_not_select = 9
+                obs_select = 10
                 print("b",split_pi[up])
             case '8':
-                HoldAndReleaseKey(F, button_hold_time)
+                key_select = F
+                #temp until added to obs
+                time.sleep(button_hold_time)
                 print("f",split_pi[up])
             case '9':
-                HoldAndReleaseKey(R, button_hold_time)
+                key_select = R
+                time.sleep(button_hold_time)
                 print("r",split_pi[up])
             #deals with characters not defined
             case _:
+                obs_not_select = 0
+                obs_select = 0
                 print("non")
         update_up()
         saving()
-        
+        HoldAndReleaseKey(key_select, button_hold_time)
+        obs.Toggle_obs(obs_not_select,obs_select,button_hold_time)
         #resets up if it is larger then decimal places to prevent crash
         if up >= mp.dps:
             up = 0

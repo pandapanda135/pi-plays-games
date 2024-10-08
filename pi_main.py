@@ -12,7 +12,6 @@ mp.dps = 5000 # Set decimal places
 
 up = 0
 button_hold_time = 0.25
-start_time = 5 #change to modify how long until it start
 
 #handles loading 
 env_file_path = Path("up.env")
@@ -29,7 +28,7 @@ def update_up():
 
 #countdown to start
 def countdown():
-    global start_time
+    start_time = 5 #change to modify how long until it start
     while True:
         if start_time == 0:
             start_time = 5
